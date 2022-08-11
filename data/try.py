@@ -37,6 +37,13 @@ with open(r'D:\programming\Shell Udacity\python\python project\workspace\data\ne
     #   if diameter != "":
     #     rowcount += 1
     # print(rowcount)
+    # rowcount = 0
+    # for row in reader:
+    #   hazardous = row[7]
+    #   if hazardous == "":
+    #     rowcount += 1
+
+    #     print(rowcount)
 
     with open(r"D:\programming\Shell Udacity\python\python project\workspace\data\cad.json", "r") as file:
       contents = json.load(file)
@@ -62,11 +69,16 @@ with open(r'D:\programming\Shell Udacity\python\python project\workspace\data\ne
 
 # Hint: Find entries whose date starts with '2000-Jan-01'. One of the lists represents the close approach of the NEO "2002 PB". What is the value corresponding to the velocity relative to Earth?
 
-for data in contents["data"]:
-  if data[3].startswith("2000-Jan-01") and data[0] == "2002 PB":
-    print(data[7])
+# for data in contents["data"]:
+#   if data[3].startswith("2000-Jan-01") and data[0] == "2002 PB":
+#     print(data[7])
 
-      
+# counts = 0 
+# for data in contents["data"]:
+#   dist = data[7]
+#   if dist:
+#     counts += 1
+#     print(counts)
   
 
 
@@ -98,3 +110,16 @@ for data in contents["data"]:
 # minutes; example "2_09:08" is 2 days 9 hours 8 minutes)
 
 # h - absolute magnitude H (mag)
+
+
+class Student:
+    def __init__(self, firstName, lastName, id,math):
+        self._firstName = firstName
+        self._lastName = lastName
+        self._id = id
+        # {'math': 100, 'bio': 90, 'history': 80}
+        self.math = math
+
+
+student = Student("Edward", "Gates", "0456789",  100)
+print(student.math)
