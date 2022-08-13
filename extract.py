@@ -57,4 +57,4 @@ def load_approaches(cad_json_path):
         approaches.append(CloseApproach(designation, time, distance, velocity))
 
 
-    return ()
+    return approaches

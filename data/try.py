@@ -45,8 +45,8 @@ with open(r'D:\programming\Shell Udacity\python\python project\workspace\data\ne
 
     #     print(rowcount)
 
-    with open(r"D:\programming\Shell Udacity\python\python project\workspace\data\cad.json", "r") as file:
-      contents = json.load(file)
+with open(r"D:\programming\Shell Udacity\python\python project\workspace\data\cad.json", "r") as file:
+  contents = json.load(file)
     #How many close approaches are in the cad.json data set?
     #Hint: Instead of manually counting the entries, you can use the value of the "count" key
     # print(contents["count"])
@@ -82,11 +82,6 @@ with open(r'D:\programming\Shell Udacity\python\python project\workspace\data\ne
   
 
 
-
-
-
-
-
 # cad.json format description:
 # des - primary designation of the asteroid or comet (e.g., 443, 2000 SG344)
 
@@ -112,14 +107,86 @@ with open(r'D:\programming\Shell Udacity\python\python project\workspace\data\ne
 # h - absolute magnitude H (mag)
 
 
-class Student:
-    def __init__(self, firstName, lastName, id,math):
-        self._firstName = firstName
-        self._lastName = lastName
-        self._id = id
-        # {'math': 100, 'bio': 90, 'history': 80}
-        self.math = math
+# class Student:
+#     def __init__(self, firstName, lastName, id,math):
+#         self._firstName = firstName
+#         self._lastName = lastName
+#         self._id = id
+#         # {'math': 100, 'bio': 90, 'history': 80}
+#         self.math = math
 
 
-student = Student("Edward", "Gates", "0456789",  100)
-print(student.math)
+# student = Student("Edward", "Gates", "0456789",  100)
+# print(student.math)
+
+neos = [{"designation": "433", "name": "Eros", "diameter": 16.840, "hazardous": "N"},
+{"designation": "2020 FK", "name": "", "diameter": "nan", "hazardous": "Y"},
+{"designation": "433", "name": "Eros", "diameter": 16.840, "hazardous": "y"}]
+
+approaches = [
+  {"designation": "2020 FK", "time": "2020-Jan-01 12:30", "distance": 0.25, "velocity": 56.78},
+{"designation": "433","time": "2020-Jan-01 12:30", "distance": 0.25, "velocity": 16.840 }]
+
+# for neo in neos:
+#   print(neo["designation"])
+
+
+class NEODatabase:
+    def __init__(self, neos, approaches):
+      self.neos = neos
+      self.approaches = approaches
+
+      self.neoByName= {"name" :neo for neo in self.neos
+      }
+      print(type(self.neoByName))
+      self.neoByDes = {"designation": neo for neo in self.neos}
+
+      for approach in self.approaches:
+
+        if approach["designation"] in self.neoByDes["designation"]:
+          approach.aka= self.neos[self.neoByDes[approach["designation"]]]
+          # print("APP_AKA:::", approach.aka)
+          # print("APP NEO: ",approach.neo)
+          approach.aka.approaches.append(approach)
+      # print("Helloooo", self.approaches)
+
+          # print("_" * 10)
+          # print(self.neoByDes["designation"])
+        
+
+    def getByName(self,name):
+      # self.name = self.neoByName["name"]
+      return self.neoByName[name]
+
+    def __str__(self):
+      return f"Neo name {self.neoByName} and neo designation {self.neoByDes}"
+
+myNeo = NEODatabase(neos, approaches)
+
+# print(myNeo.neoByName)
+# print(myNeo.getByName("name"))
+# print("*" * 20)
+# print(myNeo.neos)
+# print("*" * 20)
+print("APPROACHES: ", myNeo.approaches)
+
+# myList = [
+# 	{
+# 		'foo':12,
+# 		'bar':14
+# 	},
+# 	{
+# 		'foo':52,
+# 		'car':641
+# 	},
+# 	{
+# 		'foo':6,
+# 		'tar':84
+# 	}
+# ]
+
+# for elem in myList:
+#     print(elem["foo"])
+
+
+

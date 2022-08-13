@@ -46,8 +46,9 @@ class NearEarthObject:
         # and a missing diameter being represented by `float('nan')`.      
         self.designation = designation
         self.name = None if name == "" else name
-        self.diameter = float('nan') if diameter == "" else diameter
-        self.hazardous = False if hazardous == "" or hazardous == "N" else hazardous
+        self.diameter = float('nan') if diameter == "" else float(diameter)
+        # self.hazardous = False if hazardous == "" or hazardous == "N" else hazardous
+        self.hazardous = True if hazardous == 'Y' else False
 
         # Create an empty initial collection of linked approaches.
         self.approaches = []
@@ -63,8 +64,8 @@ class NearEarthObject:
         # TODO: Use this object's attributes to return a human-readable string representation.
         # The project instructions include one possibility. Peek at the __repr__
         # method for examples of advanced string formatting.
-        hazardous = f"is" if self.hazardous else "is not"
-        return f"A NearEarthObject {self.fullname} has a diameter of {self.diameter:.3f} km and {hazardous} potentially hazardous."
+        self.hazardous = f"is" if self.hazardous else "is not"
+        return f"NEO {self.fullname} has a diameter of {self.diameter:.3f} km and {self.hazardous} potentially hazardous."
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
@@ -99,7 +100,11 @@ class CloseApproach:
         self._designation = designation
         self.time = cd_to_datetime(time)  # TODO: Use the cd_to_datetime function for this attribute.
         self.distance = float(distance)
-        self.velocity = float(velocity)
+        try:
+          self.velocity = float(velocity)
+        except ValueError:
+          self.velocity = float("nan")
+
 
         # Create an attribute for the referenced NEO, originally None.
         self.neo = None
