@@ -189,4 +189,12 @@ print("APPROACHES: ", myNeo.approaches)
 #     print(elem["foo"])
 
 
+names = ["ali","Alberta","Victoria","Nissan","sayed"]
+numbers = [1,2,4]
 
+
+
+filters = [
+  [name for name in names if len(name) >= 5],
+  [number for number in numbers if number >=5]
+]
