@@ -19,6 +19,7 @@ You'll edit this file in Tasks 3a and 3c.
 
 
 import operator
+from itertools import islice
 
 
 class UnsupportedCriterionError(NotImplementedError):
@@ -146,15 +147,15 @@ def create_filters(date=None, start_date=None, end_date=None,
     filters = []
 
     if date: filters.append(DateFilter(operator.eq,date))
-    if start_date: filters.append(DateFilter(operator.ge, date))
-    if end_date: filters.append(DateFilter(operator.le,date))
+    if start_date: filters.append(DateFilter(operator.ge, start_date))
+    if end_date: filters.append(DateFilter(operator.le,end_date))
     if distance_min: filters.append(DistanceFilter(operator.ge, distance_min))
     if distance_max: filters.append(DistanceFilter(operator.le, distance_max))
     if velocity_min: filters.append(VelocityFilter(operator.ge, velocity_min))
     if velocity_max: filters.append(VelocityFilter(operator.le,velocity_max))
     if diameter_min: filters.append(DiameterFilter(operator.ge, diameter_min))
-    if diameter_max : filters.append(DiameterFilter(operator.le, velocity_max))
-    if hazardous: filters.append(HazardousFilter(operator.eq,hazardous))
+    if diameter_max : filters.append(DiameterFilter(operator.le, diameter_max))
+    if hazardous is not None: filters.append(HazardousFilter(operator.eq,hazardous))
 
     return filters
 
@@ -168,4 +169,9 @@ def limit(iterator, n=None):
     :yield: The first (at most) `n` values from the iterator.
     """
     # TODO: Produce at most `n` values from the given iterator.
-    return iterator
+    if n == 0 or n == None:
+      return iterator
+    else:
+      return islice(iterator, n)
+
+    
