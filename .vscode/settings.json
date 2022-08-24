@@ -1,3 +1,4 @@
 {
-  "python.linting.pycodestyleEnabled": true
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pycodestylePath": "pycodestyle"
 }
