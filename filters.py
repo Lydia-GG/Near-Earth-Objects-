@@ -1,4 +1,4 @@
-"""Provide filters for querying close approaches and limit the generated
+"""Provide filters for querying close approaches and limit the generated.
 
 results.
 
@@ -41,10 +41,11 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
-    def __init__(self, op, value):
-        """Construct a new `AttributeFilter` from an binary predicate and a
 
-        reference value.
+    def __init__(self, op, value):
+        """Construct a new `AttributeFilter` from an binary predicate.
+
+        and a reference value.
 
         The reference value will be supplied as the second (right-hand side)
         argument to the operator function. For example, an `AttributeFilter`
@@ -75,10 +76,10 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
-        """Return `repr(self)`, a computer-readable string representation of
+        """Return `repr(self)`, a computer-readable string representation of.
 
-          this object.
-          """
+        this object.
+        """
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, \
           value={self.value})"
 
@@ -93,37 +94,47 @@ class DesignationFilter(AttributeFilter):
 
 
 class DateFilter(AttributeFilter):
-    """subclass of AttributeFilter to filter by date"""
+    """subclass of AttributeFilter to filter by date."""
+
     @classmethod
     def get(cls, approach):
+        """Get the date."""
         return approach.time.date()
 
 
 class DistanceFilter(AttributeFilter):
-    """subclass of AttributeFilter to filter by distance"""
+    """subclass of AttributeFilter to filter by distance."""
+
     @classmethod
     def get(cls, approach):
+        """Get the distance."""
         return approach.distance
 
 
 class VelocityFilter(AttributeFilter):
-    """subclass of AttributeFilter to filter by velocity"""
+    """subclass of AttributeFilter to filter by velocity."""
+
     @classmethod
     def get(cls, approach):
+        """Get the velocity."""
         return approach.velocity
 
 
 class DiameterFilter(AttributeFilter):
-    """subclass of AttributeFilter to filter by diameter"""
+    """subclass of AttributeFilter to filter by diameter."""
+
     @classmethod
     def get(cls, approach):
+        """Get the diameter."""
         return approach.neo.diameter
 
 
 class HazardousFilter(AttributeFilter):
-    """subclass of AttributeFilter to filter by hazardous"""
+    """subclass of AttributeFilter to filter by hazardous."""
+
     @classmethod
     def get(cls, approach):
+        """Get the hazardous."""
         return approach.neo.hazardous
 
 

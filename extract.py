@@ -1,4 +1,4 @@
-"""Extract data on near-Earth objects and close approaches from CSV and JSON
+"""Extract data on near-Earth objects and close approaches from CSV and JSON.
 
 files.
 
